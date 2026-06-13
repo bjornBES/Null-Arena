@@ -1,2 +1,6 @@
 <Solution>
+  <Project Path="CommunityServer/CommunityServer.csproj" />
+  <Project Path="GameServer/GameServer.csproj" />
+  <Project Path="PlayerClient/PlayerClient.csproj" />
+  <Project Path="Shared/Shared.csproj" />
 </Solution>
