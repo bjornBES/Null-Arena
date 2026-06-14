@@ -1,4 +1,18 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="Bare Spirit Project Specifications.md" />
+    <File Path="Plans.md" />
+    <File Path="SYSTEMS_OVERVIEW.md" />
+  </Folder>
+  <Folder Name="/Solution Items/Master/">
+    <File Path="master_server/justfile" />
+    <File Path="master_server/main.c" />
+    <File Path="master_server/master_server.c" />
+    <File Path="master_server/net.c" />
+    <File Path="master_server/server.c" />
+    <File Path="master_server/server.h" />
+  </Folder>
   <Project Path="CommunityServer/CommunityServer.csproj" />
   <Project Path="GameServer/GameServer.csproj" />
   <Project Path="PlayerClient/PlayerClient.csproj" />

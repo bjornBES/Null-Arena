@@ -1,52 +1,87 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using PlayerClient.Game.Gameplay;
+using PlayerClient.Game.PreGameplay;
+using Shared.EasyArgs;
+using Shared.Game;
+using Shared.Game.Player;
+using Shared.Network;
 
 namespace PlayerClient
 {
-    public class Game1 : Game
+    public class ClientArguments
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        [Arg("-s", "--server")]
+        public string GameServerIp { get; set; }
 
-        public Game1()
+        [Arg("-p", "--port")]
+        public int GameServerPort { get; set; }
+    }
+    public class Game1 : MonoGameType
+    {
+        public GameplayManager GameplayManager;
+        public ScreenManager ScreenManager;
+        public static ClientArguments ClientArguments { get; private set; }
+
+        public Game1(string[] args)
         {
-            _graphics = new GraphicsDeviceManager(this);
+            ClientArguments = EasyArgs.Parse<ClientArguments>(args);
+            PlayerIdentity player = PlayerIdentity.Generate("BjornBEs");
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            Window.AllowUserResizing = true;
+            GameplayManager = new GameplayManager(this);
+            ScreenManager = new ScreenManager();
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            GameplayManager.Initialize();
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            GameplayManager.LoadContent();
 
-            // TODO: use this.Content to load your game content here
+            ScreenManager.Initialize(this);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            // TODO: Add your update logic here
-
+            if (ScreenManager.IsActive)
+            {
+                IsMouseVisible = true;
+                ScreenManager.Update(gameTime);
+            }
+            else
+            {
+                IsMouseVisible = false;
+                GameplayManager.Update(gameTime);
+            }
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
+            if (ScreenManager.IsActive)
+            {
+                ScreenManager.Draw(gameTime);
+            }
+            else
+            {
+                GameplayManager.Draw(gameTime);
+            }
             base.Draw(gameTime);
+        }
+
+        public List<ServerInfo> GetServers()
+        {
+            return [];
+        }
+
+        public void PlayGamemode(GameplayMode mode)
+        {
+
+            ScreenManager.GoTo(GameState.Lobby);
         }
     }
 }

@@ -1,0 +1,52 @@
+﻿using Shared.Game.Matchs;
+
+namespace Shared.Network.Package.matchs
+{
+    // CtS
+    public class FindMatchPackages : Packet
+    {
+        public override PackageType Type => PackageType.FindMatch;
+
+        public override void Deserialize(BinaryReader reader)
+        {
+        }
+
+        public override void Serialize(BinaryWriter writer)
+        {
+        }
+    }
+    // CtS
+    public class ConnectMatchPackages : Packet
+    {
+        public override PackageType Type => PackageType.ConnectMatch;
+
+        public MatchId MatchId { get; set; }
+
+
+        public override void Deserialize(BinaryReader reader)
+        {
+        }
+
+        public override void Serialize(BinaryWriter writer)
+        {
+        }
+    }
+    // StC
+    public class MatchMapPackages : Packet
+    {
+        public override PackageType Type => PackageType.GetMatchMap;
+
+        public MatchId MatchId { get; set; }
+        public int MapIdLength { get; set; }
+        public char[] MapId { get; set; }
+
+
+        public override void Deserialize(BinaryReader reader)
+        {
+        }
+
+        public override void Serialize(BinaryWriter writer)
+        {
+        }
+    }
+}

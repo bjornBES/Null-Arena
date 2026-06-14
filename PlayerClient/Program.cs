@@ -1,8 +1,10 @@
-﻿internal class Program
+﻿using PlayerClient;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
-        using var game = new PlayerClient.Game1();
+        using Game1 game = new Game1(args);
         game.Run();
     }
 }
