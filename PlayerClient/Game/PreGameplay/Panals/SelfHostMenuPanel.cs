@@ -29,7 +29,7 @@ namespace PlayerClient.Game.PreGameplay.Panals
             {
                 EngineContentManager.Instance.GetManager<MeshBuffer>(ContentType.Mesh).UnloadAll();
                 EngineContentManager.Instance.GetManager<Texture2D>(ContentType.Texture).UnloadAll();
-                PacketDespasher.DispaschHandler(new GetMatchPackages()
+                PacketDespatcher.DispaschHandler(new GetMatchPackages()
                 {
                     MatchId = new MatchId(0),
                     MapId = "mparena01".ToCharArray(),

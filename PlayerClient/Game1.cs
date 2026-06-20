@@ -3,14 +3,13 @@
  * File Created: 13 Jun 2026
  * Author: BjornBEs
  * -----
- * Last Modified: 14 Jun 2026
+ * Last Modified: 20 Jun 2026
  * Modified By: BjornBEs
  * -----
  */
 
 using System.Diagnostics;
 using System.Net;
-using System.Net.Sockets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -20,13 +19,13 @@ using PlayerClient.Game.Gameplay.InputSubsystem;
 using PlayerClient.Game.Gameplay.NetworkSystem;
 using PlayerClient.Game.PreGameplay;
 using RemoteConsole;
-using Shared.EasyArgs;
-using Shared.Game;
-using Shared.Game.InputSystem;
-using Shared.Game.Matchs;
-using Shared.Game.Player;
-using Shared.Network;
-using Shared.Network.Package.matchs;
+using Shared.Core.Network;
+using Shared.Core.EasyArgs;
+using Shared.Core.Game;
+using Shared.Core.Game.InputSystem;
+using Shared.Core.Game.Matches;
+using Shared.Core.Game.Player;
+using Shared.Core.Network.Package.Matches;
 
 namespace PlayerClient
 {
@@ -104,7 +103,7 @@ namespace PlayerClient
                         EngineContentManager.Instance.GetManager<MeshBuffer>(ContentType.Mesh).UnloadAll();
                         EngineContentManager.Instance.GetManager<Texture2D>(ContentType.Texture).UnloadAll();
                         GameplayManager.Unload();
-                        PacketDespasher.DispaschHandler(new GetMatchPackages()
+                        PacketDespatcher.DispatchHandler(new GetMatchPackages()
                         {
                             MatchId = new MatchId(0),
                             MapId = "mparena01".ToCharArray(),

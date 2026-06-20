@@ -3,7 +3,7 @@
  * File Created: 18 Apr 2026
  * Author: BjornBEs
  * -----
- * Last Modified: 18 Apr 2026
+ * Last Modified: 20 Jun 2026
  * Modified By: BjornBEs
  * -----
  */
@@ -13,6 +13,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
+using Shared.Core.Network;
 using Shared.Network;
 using Timer = System.Timers.Timer;
 

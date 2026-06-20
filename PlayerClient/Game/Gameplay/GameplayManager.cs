@@ -3,7 +3,7 @@
  * File Created: 18 Apr 2026
  * Author: BjornBEs
  * -----
- * Last Modified: 27 May 2026
+ * Last Modified: 20 Jun 2026
  * Modified By: BjornBEs
  * -----
  */
@@ -15,9 +15,9 @@ using PlayerClient.Game.Gameplay.InputSubsystem;
 using PlayerClient.Game.Gameplay.MapSystem;
 using PlayerClient.Game.Gameplay.NetworkSystem;
 using PlayerClient.Game.Gameplay.Rendering;
-using Shared.Game.BVH;
-using Shared.Network;
-using Shared.Network.Package.matchs;
+using Shared.Core.Game.BVH;
+using Shared.Core.Network;
+using Shared.Core.Network.Package.Matches;
 using EntityManager = PlayerClient.Game.Gameplay.EntitySystem.EntityManager;
 
 namespace PlayerClient.Game.Gameplay
@@ -82,7 +82,7 @@ namespace PlayerClient.Game.Gameplay
             MapManager.Initialize(gameplayContext);
             EntityManager.Initialize(gameplayContext);
 
-            PacketDespasher.OnMatchStartPackages += StartMatch;
+            PacketDespatcher.OnMatchStartPackages += StartMatch;
         }
 
         public void LoadContent()

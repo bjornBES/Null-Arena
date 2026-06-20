@@ -3,7 +3,7 @@
  * File Created: 18 Apr 2026
  * Author: BjornBEs
  * -----
- * Last Modified: 25 May 2026
+ * Last Modified: 20 Jun 2026
  * Modified By: BjornBEs
  * -----
  */
@@ -11,10 +11,10 @@
 using Microsoft.Xna.Framework;
 using PlayerClient.Client.game;
 using PlayerClient.Game.Content;
-using Shared.Game.Matchs;
-using Shared.Network;
-using Shared.Network.Package;
-using Shared.Network.Package.matchs;
+using Shared.Core.Game.Matches;
+using Shared.Core.Network;
+using Shared.Core.Network.Package;
+using Shared.Core.Network.Package.Matches;
 
 namespace PlayerClient.Game.Gameplay.NetworkSystem
 {

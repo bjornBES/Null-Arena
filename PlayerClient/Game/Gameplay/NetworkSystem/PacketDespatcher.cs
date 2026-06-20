@@ -1,14 +1,24 @@
-using Shared.Game.Matchs;
-using Shared.Network.Package;
-using Shared.Network.Package.matchs;
+/*
+ * File: PacketDespatcher.cs
+ * File Created: 20 Jun 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 20 Jun 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using Shared.Core.Game.Matches;
+using Shared.Core.Network.Package;
+using Shared.Core.Network.Package.Matches;
 
 namespace PlayerClient.Game.Gameplay.NetworkSystem
 {
-    public static class PacketDespasher
+    public static class PacketDespatcher
     {
         public static event Action<GetMatchPackages> OnMatchStartPackages;
 
-        public static void DispaschHandler(Packet packet)
+        public static void DispatchHandler(Packet packet)
         {
             switch (packet.Type)
             {

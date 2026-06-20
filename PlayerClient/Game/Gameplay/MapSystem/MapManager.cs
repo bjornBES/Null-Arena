@@ -32,7 +32,7 @@ namespace PlayerClient.Game.Gameplay.MapSystem
         {
             loadedMap = new LoadedMap();
 
-            PacketDespasher.OnMatchStartPackages += GotMatchMap;
+            PacketDespatcher.OnMatchStartPackages += GotMatchMap;
         }
         public override void LoadContent(GameplayContext context, EngineContentManager contentManager)
         {
