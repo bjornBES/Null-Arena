@@ -16,35 +16,35 @@ namespace PlayerClient.Game.Gameplay.Rendering
 {
     public enum RenderType
     {
-        Billboard
+        Billboard,
+        Mesh
     }
-    public class RenderCommand
+    public abstract class RenderCommand
     {
-        public RenderType Type;
+        public abstract RenderType Type { get; }
         public Texture2D Texture;
         public Vector3 Position;
-        public float Width;
-        public float Height;
-        public float Depth;
+        public Quaternion Rotation;
+        public Vector3 Scale;
+        GameplayContext Context;
+        public float Depth => Vector3.Dot(Position - Context.Camera.Position, Context.Camera.Forward);
 
-        public RenderCommand(RenderType renderType, Texture2D texture, Vector3 position, float width, float height, GameplayContext context)
+        public RenderCommand(Texture2D texture, Vector3 position, Quaternion rotation, Vector3 scale, GameplayContext context)
         {
-            Type = renderType;
             Texture = texture;
             Position = position;
-            Width = width;
-            Height = height;
-            Depth = Vector3.Dot(position - context.Camera.Position, context.Camera.Forward);
+            Rotation = rotation;
+            Scale = scale;
+            Context = context;
         }
-        public RenderCommand(RenderType renderType, string textureKey, Vector3 position, float width, float height, GameplayContext context)
+        public RenderCommand(string textureKey, Vector3 position, Quaternion rotation, Vector3 scale, GameplayContext context)
         {
             Texture2D texture = EngineContentManager.Instance.GetContent<Texture2D>(textureKey, ContentType.Texture);
-            Type = renderType;
             Texture = texture;
             Position = position;
-            Width = width;
-            Height = height;
-            Depth = Vector3.Dot(position - context.Camera.Position, context.Camera.Forward);
+            Rotation = rotation;
+            Scale = scale;
+            Context = context;
         }
     }
 }

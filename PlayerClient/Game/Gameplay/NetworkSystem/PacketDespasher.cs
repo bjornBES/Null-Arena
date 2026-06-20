@@ -1,11 +1,12 @@
-﻿using Shared.Network.Package;
+using Shared.Game.Matchs;
+using Shared.Network.Package;
 using Shared.Network.Package.matchs;
 
 namespace PlayerClient.Game.Gameplay.NetworkSystem
 {
     public static class PacketDespasher
     {
-        public static event Action<MatchMapPackages> OnMatchMapPackages;
+        public static event Action<GetMatchPackages> OnMatchStartPackages;
 
         public static void DispaschHandler(Packet packet)
         {
@@ -17,9 +18,9 @@ namespace PlayerClient.Game.Gameplay.NetworkSystem
                     break;
                 case PackageType.ConnectMatch:
                     break;
-                case PackageType.GetMatchMap:
+                case PackageType.GetMatch:
                     {
-                        OnMatchMapPackages?.Invoke(packet as MatchMapPackages);
+                        OnMatchStartPackages?.Invoke(packet as GetMatchPackages);
                         break;
                     }
             }

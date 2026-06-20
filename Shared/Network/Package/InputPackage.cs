@@ -19,7 +19,8 @@ namespace Shared.Network.Package
 
         public Vector3 RawMovement { get; set; }
         public InputActionFlags Buttons { get; set; }
-        public float AimAngle { get; set; }
+        public float AimX { get; set; }
+        public float AimY { get; set; }
 
         public override void Deserialize(BinaryReader reader)
         {
@@ -28,7 +29,8 @@ namespace Shared.Network.Package
             point.Y = reader.ReadSingle();
             RawMovement = point;
             Buttons = (InputActionFlags)reader.ReadUInt32();
-            AimAngle = reader.ReadSingle();
+            AimX = reader.ReadSingle();
+            AimY = reader.ReadSingle();
         }
 
         public override void Serialize(BinaryWriter writer)
@@ -36,7 +38,8 @@ namespace Shared.Network.Package
             writer.Write(RawMovement.X);
             writer.Write(RawMovement.Y);
             writer.Write((uint)Buttons);
-            writer.Write(AimAngle);
+            writer.Write(AimX);
+            writer.Write(AimY);
         }
     }
 }

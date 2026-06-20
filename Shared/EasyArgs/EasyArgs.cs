@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Reflection;
 
 namespace Shared.EasyArgs
@@ -60,9 +60,15 @@ namespace Shared.EasyArgs
                 if (attr != null)
                 {
                     if (!string.IsNullOrEmpty(attr.Short))
+                    {
                         optionMap[attr.Short] = p;
+                    }
+
                     if (!string.IsNullOrEmpty(attr.Long))
+                    {
                         optionMap[attr.Long] = p;
+                    }
+
                     if (!string.IsNullOrEmpty(attr.Short) && attr.Short.StartsWith("-") && attr.Short.Length == 2)
                     {
                         shortMap[attr.Short[1]] = p;
@@ -109,7 +115,10 @@ namespace Shared.EasyArgs
                         // needs a value
                         i++;
                         if (i >= tokens.Count)
+                        {
                             throw new ArgumentException($"Missing value for option {tok}");
+                        }
+
                         string val = tokens[i];
                         SetProperty(result, prop, val);
                         i++;
@@ -124,7 +133,9 @@ namespace Shared.EasyArgs
                     {
                         char k = tok[1];
                         if (!shortMap.TryGetValue(k, out var prop))
+                        {
                             throw new ArgumentException($"Unknown option: {tok}");
+                        }
 
                         if (IsBoolean(prop.PropertyType))
                         {
@@ -136,7 +147,10 @@ namespace Shared.EasyArgs
                             // check if the rest of token contains the value: -n10 (not in this branch), but since length==2, look at next token
                             i++;
                             if (i >= tokens.Count)
+                            {
                                 throw new ArgumentException($"Missing value for option {tok}");
+                            }
+
                             string val = tokens[i];
                             SetProperty(result, prop, val);
                             i++;
@@ -148,13 +162,18 @@ namespace Shared.EasyArgs
                         // if the first short corresponds to non-boolean, treat remainder as its value
                         char first = tok[1];
                         if (!shortMap.TryGetValue(first, out var firstProp))
+                        {
                             throw new ArgumentException($"Unknown option: -{first}");
+                        }
 
                         if (!IsBoolean(firstProp.PropertyType))
                         {
                             string remainder = tok.Substring(2);
                             if (string.IsNullOrEmpty(remainder))
+                            {
                                 throw new ArgumentException($"Missing value for option -{first}");
+                            }
+
                             SetProperty(result, firstProp, remainder);
                             i++;
                         }
@@ -165,9 +184,15 @@ namespace Shared.EasyArgs
                             {
                                 char c = tok[j];
                                 if (!shortMap.TryGetValue(c, out var pflag))
+                                {
                                     throw new ArgumentException($"Unknown short flag: -{c}");
+                                }
+
                                 if (!IsBoolean(pflag.PropertyType))
+                                {
                                     throw new ArgumentException($"Short combined flag -{c} expects a value, can't be combined");
+                                }
+
                                 pflag.SetValue(result, true);
                             }
                             i++;
@@ -207,10 +232,15 @@ namespace Shared.EasyArgs
                 var p = kv.Key;
                 var meta = kv.Value;
                 if (!meta.Required)
+                {
                     continue;
+                }
+
                 object? val = p.GetValue(result);
                 if (val == null || (p.PropertyType == typeof(string) && string.IsNullOrEmpty((string)val)))
+                {
                     throw new ArgumentException($"Missing required option {meta.Long} / {meta.Short}");
+                }
             }
 
             return result;
@@ -219,7 +249,9 @@ namespace Shared.EasyArgs
         static string[] NormalizeRawArgs(string[] rawArgs)
         {
             if (rawArgs == null)
+            {
                 return Array.Empty<string>();
+            }
             // Some environments include the program path as argv[0] — allow both forms
             if (rawArgs.Length > 0 && rawArgs[0].EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
             {
@@ -315,7 +347,9 @@ namespace Shared.EasyArgs
         static string[] SplitArrayValues(string raw)
         {
             if (string.IsNullOrEmpty(raw))
+            {
                 return Array.Empty<string>();
+            }
             // support comma, semicolon, or whitespace separated lists
             string[] parts = raw.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
                            .SelectMany(s => s.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
@@ -326,12 +360,21 @@ namespace Shared.EasyArgs
         static bool ParseBoolString(string s)
         {
             if (string.IsNullOrEmpty(s))
+            {
                 return true;
+            }
+
             s = s.Trim().ToLowerInvariant();
             if (s == "true" || s == "1" || s == "yes" || s == "on")
+            {
                 return true;
+            }
+
             if (s == "false" || s == "0" || s == "no" || s == "off")
+            {
                 return false;
+            }
+
             throw new ArgumentException($"Invalid boolean value: {s}");
         }
 
@@ -350,9 +393,15 @@ namespace Shared.EasyArgs
                     string help = a.Help ?? "";
                     object? dv = p.GetCustomAttribute<DefaultValueAttribute>()?.Value;
                     if (dv != null)
+                    {
                         help += $" (default: {dv})";
+                    }
+
                     if (a.Required)
+                    {
                         help += " (required)";
+                    }
+
                     lines.Add($"  {names} {help}");
                 }
             }
@@ -363,7 +412,9 @@ namespace Shared.EasyArgs
             {
                 var pa = p.GetCustomAttribute<PositionalAttribute>();
                 if (pa != null)
+                {
                     positional.Add((pa.Index, p, pa));
+                }
             }
             if (positional.Count > 0)
             {
@@ -374,7 +425,10 @@ namespace Shared.EasyArgs
                     var pa = item.Item3;
                     string help = pa.Help ?? "";
                     if (pa.Required)
+                    {
                         help += " (required)";
+                    }
+
                     lines.Add($"  [{item.Item1}] {p.Name} {help}");
                 }
             }
@@ -389,10 +443,15 @@ namespace Shared.EasyArgs
             {
                 var pa = p.GetCustomAttribute<PositionalAttribute>();
                 if (pa != null)
+                {
                     positional[pa.Index] = p;
+                }
             }
             if (positional.Count == 0)
+            {
                 return "";
+            }
+
             return string.Join(" ", positional.Select(kv => kv.Value.Name.ToUpperInvariant()));
         }
     }

@@ -26,7 +26,7 @@ namespace PlayerClient.Game.Gameplay.NetworkSystem
         private Queue<Packet> _sendPacketQueue;
 
         // event
-        public event Action<MatchMapPackages>? OnGotMatchMap;
+        public event Action<GetMatchPackages>? OnGotMatchMap;
         public NetworkManager() : base()
         {
             _gameClient = new GameClient();
@@ -60,7 +60,6 @@ namespace PlayerClient.Game.Gameplay.NetworkSystem
                         break;
                     case PackageType.ConnectMatch:
                         break;
-                    case PackageType.GetMatchMap:
                         break;
                     default:
                         break;
@@ -93,7 +92,7 @@ namespace PlayerClient.Game.Gameplay.NetworkSystem
         }
         public void ConnectToMatch(MatchId id)
         {
-            Packet packet = new MatchMapPackages();
+            Packet packet = new GetMatchPackages();
             _gameClient.SendPackage(packet);
         }
     }

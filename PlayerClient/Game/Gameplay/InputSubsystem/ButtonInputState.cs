@@ -9,6 +9,10 @@ namespace PlayerClient.Game.Gameplay.InputSubsystem
         //
         // Summary:
         //     The button is pressed.
-        Pressed
+        Pressed,
+        //
+        // Summary:
+        //     The button is down.
+        Down
     }
 }

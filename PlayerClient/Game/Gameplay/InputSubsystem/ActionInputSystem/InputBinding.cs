@@ -32,29 +32,61 @@ namespace PlayerClient.Game.Gameplay.InputSubsystem.ActionInputSystem
     {
         public override BindingType BindingType => BindingType.Axis;
         public override ActionType ReturnType => ActionType.Float;
-        public KeyCode[] Positive { get; set; }
-        public KeyCode[] Negative { get; set; }
+        public KeyCode[]? Positive { get; set; }
+        public KeyCode[]? Negative { get; set; }
+        public string[]? ActionPositive { get; set; }
+        public string[]? ActionNegative { get; set; }
 
         public override void Evaluate(InputSystem system, ref ActionState state)
         {
             float value = state.FloatValue;
 
             int valueChanged = 0;
-            foreach (KeyCode key in Positive)
+            if (Positive != null)
             {
-                if (system.IsKeyDown(key))
+                foreach (KeyCode key in Positive)
                 {
-                    value += 0.05f;
-                    valueChanged++;
+                    if (system.IsKeyDown(key))
+                    {
+                        value += 0.05f;
+                        valueChanged++;
+                    }
                 }
             }
 
-            foreach (KeyCode key in Negative)
+            if (Negative != null)
             {
-                if (system.IsKeyDown(key))
+                foreach (KeyCode key in Negative)
                 {
-                    value -= 0.05f;
-                    valueChanged++;
+                    if (system.IsKeyDown(key))
+                    {
+                        value -= 0.05f;
+                        valueChanged++;
+                    }
+                }
+            }
+
+            if (ActionPositive != null)
+            {
+                foreach (string action in ActionPositive)
+                {
+                    if (system.IsActionDown(action))
+                    {
+                        value += 0.05f;
+                        valueChanged++;
+                    }
+                }
+            }
+
+            if (ActionNegative != null)
+            {
+                foreach (string action in ActionNegative)
+                {
+                    if (system.IsActionDown(action))
+                    {
+                        value -= 0.05f;
+                        valueChanged++;
+                    }
                 }
             }
 
@@ -74,7 +106,8 @@ namespace PlayerClient.Game.Gameplay.InputSubsystem.ActionInputSystem
     {
         public override BindingType BindingType => BindingType.Button;
         public override ActionType ReturnType => ActionType.Bool;
-        public KeyCode[] Keys { get; set; }
+        public KeyCode[]? Keys { get; set; }
+        public string[]? Actions { get; set; }
 
         public override void Evaluate(InputSystem system, ref ActionState state)
         {
@@ -82,21 +115,44 @@ namespace PlayerClient.Game.Gameplay.InputSubsystem.ActionInputSystem
             bool pressed = false;
             bool released = false;
 
-            foreach (KeyCode key in Keys)
+            if (Keys != null)
             {
-                if (system.IsKeyDown(key))
+                foreach (KeyCode key in Keys)
                 {
-                    down = true;
-                }
+                    if (system.IsKeyDown(key))
+                    {
+                        down = true;
+                    }
 
-                if (system.IsKeyPressed(key))
-                {
-                    pressed = true;
-                }
+                    if (system.IsKeyPressed(key))
+                    {
+                        pressed = true;
+                    }
 
-                if (system.IsKeyReleased(key))
+                    if (system.IsKeyReleased(key))
+                    {
+                        released = true;
+                    }
+                }
+            }
+            if (Actions != null)
+            {
+                foreach (string action in Actions)
                 {
-                    released = true;
+                    if (system.IsActionDown(action))
+                    {
+                        down = true;
+                    }
+
+                    if (system.IsActionPressed(action))
+                    {
+                        pressed = true;
+                    }
+
+                    if (system.IsActionReleased(action))
+                    {
+                        released = true;
+                    }
                 }
             }
 

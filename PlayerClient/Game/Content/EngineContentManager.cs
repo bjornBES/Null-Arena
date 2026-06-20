@@ -40,7 +40,7 @@ namespace PlayerClient.Game.Content
         }
 
         // Public methods
-        public void AddContent<T>(string assetName, string key, ContentType contentType) where T : class
+        public IContentSystem<T> GetManager<T>(ContentType contentType) where T : class
         {
             IContentSystem<T> contentManager = null;
             try
@@ -54,35 +54,38 @@ namespace PlayerClient.Game.Content
                     case ContentType.Texture:
                         contentManager = (IContentSystem<T>)ContentSystemRegistry.Get<Texture2D>();
                         break;
+                    case ContentType.Mesh:
+                        contentManager = (IContentSystem<T>)ContentSystemRegistry.Get<MeshBuffer>();
+                        break;
                 }
             }
             if (contentManager == null)
             {
                 throw new InvalidOperationException($"A ContentManager for a {contentType} was not found");
             }
-            contentManager.Load(key, assetName);
+            return contentManager;
+        }
+        public async Task AddContentAsync<T>(string key, string assetName, ContentType contentType) where T : class
+        {
+            IContentSystem<T> contentManager = GetManager<T>(contentType);
+            await contentManager.LoadAsync(key, assetName);
+        }
+        public void AddContent<T>(string key, string assetName, ContentType contentType) where T : class
+        {
+            IContentSystem<T> contentManager = GetManager<T>(contentType);
+            contentManager.LoadMainThread(key, assetName);
+        }
+        public async Task<T> GetContentAsync<T>(string key, ContentType contentType) where T : class
+        {
+            T result;
+            IContentSystem<T> contentManager = GetManager<T>(contentType);
+            result = contentManager.Get(key);
+            return result;
         }
         public T GetContent<T>(string key, ContentType contentType) where T : class
         {
             T result;
-            IContentSystem<T> contentManager = null;
-            try
-            {
-                contentManager = ContentSystemRegistry.Get<T>();
-            }
-            catch (Exception)
-            {
-                switch (contentType)
-                {
-                    case ContentType.Texture:
-                        contentManager = (IContentSystem<T>)ContentSystemRegistry.Get<Texture2D>();
-                        break;
-                }
-            }
-            if (contentManager == null)
-            {
-                throw new InvalidOperationException($"A ContentManager for a {contentType} was not found");
-            }
+            IContentSystem<T> contentManager = GetManager<T>(contentType);
             result = contentManager.Get(key);
             return result;
         }

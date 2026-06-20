@@ -15,6 +15,7 @@ namespace PlayerClient.Game.Content
     public enum ContentType
     {
         Texture,
+        Mesh,
     }
     public class LoadableContent
     {
@@ -56,7 +57,7 @@ namespace PlayerClient.Game.Content
                         content = ContentSystemRegistry.Get<Texture2D>();
                         break;
                 }
-                content.Load(Key, AssetName);
+                content.LoadMainThread(Key, AssetName);
                 Console.WriteLine($"Loaded a {ContentType} {AssetName} as {Key}");
             }
             catch (InvalidOperationException)

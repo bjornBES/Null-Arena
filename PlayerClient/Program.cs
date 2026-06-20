@@ -1,4 +1,4 @@
-﻿using PlayerClient;
+using PlayerClient;
 
 internal class Program
 {

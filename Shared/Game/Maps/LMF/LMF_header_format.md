@@ -47,9 +47,10 @@ if extra_sectors_count > 0
 | 11–13   | entity_version      | `uint8[3]`   | Entity format version, current `1\0` |
 | 14–15   | flags               | `uint16`     | Reserved for future use |
 | 16      | extra_sectors_count | `uint8`      | Number of sectors the extension header spans. 0 = no extension header |
-| 17–31   | reserved            | `uint8[15]`  | Zero, reserved for future use |
+| 17–20   | ambient_light_int   | `float`      | Global ambient light intensity |
+| 21–31   | reserved            | `uint8[11]`  | Zero, reserved for future use |
 | 32–51   | map_id              | `uint8[20]`  | Unique map identifier, null-terminated ASCII |
-| 52–63   | reserved            | `uint8[12]`  | Zero, reserved for future use |
+| 52–63   | ambient_light_color | `float[3]`   | Global ambient light color |
 | 64–87   | tables              | `table_t[3]` | Map types, usages, player configs (see below) |
 | 88–95   | reserved            | `uint8[8]`   | Zero, padding |
 | 96–415  | map_name            | `uint32[80]` | Map display name, UTF-32 encoded, null-terminated |
@@ -128,6 +129,8 @@ uint16 reserved      // zero
 | `0x0001` | Extended map name (overflow for long UTF-32 names) |
 | `0x0002` | String table (per-file entity name strings, UTF-32) |
 | `0x0003` | Extended entity data (type-specific extra fields keyed by entity_id) |
+| `0x0004` | Mesh Id table (per-file mash id strings, ASCII) |
+| `0x0005` | Texture Id table (per-file texture id strings, ASCII) |
 
 Unknown types are skipped by the parser using `(sector_count + 1) * 512` bytes from `LBA`.
 
@@ -167,6 +170,8 @@ uint32 strings[]              // UTF-32 null-terminated strings packed sequentia
 ```
 
 Lookup is O(1) — index into offset table, seek to string start.
+
+This is the same for Mesh table (0x0004) and Texture table (0x0005).
 
 ---
 

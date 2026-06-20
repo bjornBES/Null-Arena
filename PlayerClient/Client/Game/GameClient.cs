@@ -30,6 +30,10 @@ namespace PlayerClient.Client.game
 
         public uint Connect(ServerInfo server, Action<Packet> callback)
         {
+            if (server.ServerType == GameServerType.Offline)
+            {
+                return NetworkConstants.SUCCESS;
+            }
             _callback = callback;
             _socket.Connect(server.EndPoint);
 

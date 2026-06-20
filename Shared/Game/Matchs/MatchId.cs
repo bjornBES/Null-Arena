@@ -1,7 +1,4 @@
-﻿namespace Shared.Game.Matchs
+namespace Shared.Game.Matchs
 {
-    public record MatchId
-    {
-        public long Id;
-    }
+    public record MatchId(ulong Id);
 }

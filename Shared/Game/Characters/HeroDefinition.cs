@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Shared.Game.Characters
 {
@@ -6,7 +6,7 @@ namespace Shared.Game.Characters
     {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public string Id { get; init; }
-        public float MoveSpeed { get; init; }
+        public HeroMovementStats MovementStats { get; init; }
         public float MaxHealth { get; init; }
         public string ModelId { get; init; }
         public HeroTextureDefinition[] HeroSkins { get; init; }
@@ -33,7 +33,7 @@ namespace Shared.Game.Characters
         public HeroDefinition Base;
 
         public float Health;
-        public float MoveSpeed;
+        public float MaxSpeed;
 
         public AbilityRuntimeState[] Abilities;
         public List<DotRuntimeState> ActiveDots;
@@ -42,7 +42,7 @@ namespace Shared.Game.Characters
         {
             Base = definition;
             Health = definition.MaxHealth;
-            MoveSpeed = definition.MoveSpeed;
+            MaxSpeed = definition.MovementStats.MaxSpeed;
 
             Abilities = new AbilityRuntimeState[definition.AbilityIds.Length];
             ActiveDots = new List<DotRuntimeState>();

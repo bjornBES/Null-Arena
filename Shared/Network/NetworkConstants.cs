@@ -17,10 +17,13 @@ namespace Shared.Network
         public const uint OperatedGameServerID = 0x8ACFC83F;
         public const uint OperatedMasterServerID = 0xB56A4152;
         public const uint OperatedMasterDataServerID = 0xF0B7B9DD;
-        public const int GamePort = 10574;
+        
         public const int GamePortLow = 10319;
+        public const int GamePort = 10574;
         public const int MasterPort = 10575;
         public const int ClientMasterPort = 10576;
+        public const int GameServerToMasterPort = 10577;
+        
         public const string MasterDomainHost = "http://barespiritmaster.duckdns.org";
         public const string MasterHost = "188.228.89.213";
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * File: NetworkManager.cs
  * File Created: 13 Jun 2026
  * Author: BjornBEs
@@ -9,11 +9,9 @@
  */
 
 using Shared.Network;
-using System;
-using System.Collections.Generic;
+using Shared.Network.Package;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
 namespace GameServer.game
 {
@@ -27,16 +25,14 @@ namespace GameServer.game
 
         IPEndPoint _ipEndPoint;
         UdpClient _server;
+
+        Queue<InputPackage> newestInputPackages;
         public async Task Initialize(ServerInfo serverInfo)
         {
-            _ipEndPoint = serverInfo.EndPoint;
-
-            _server = new UdpClient(_ipEndPoint);
         }
 
         public async Task Start()
         {
-
             Timer gameTickTimer = new Timer(HandleTick, null, 0, 1/TickRate);
             while (true)
             {
@@ -48,6 +44,15 @@ namespace GameServer.game
 
         private void HandleClient(UdpReceiveResult result)
         {
+            Packet packet = PackageHelper.Deserialize(result.Buffer);
+            switch (packet.Type)
+            {
+                case PackageType.Input:
+                    newestInputPackages.Enqueue((InputPackage)packet);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void HandleTick(object? arg)

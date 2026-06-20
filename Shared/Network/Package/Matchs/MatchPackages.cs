@@ -1,4 +1,4 @@
-﻿using Shared.Game.Matchs;
+using Shared.Game.Matchs;
 
 namespace Shared.Network.Package.matchs
 {
@@ -32,9 +32,9 @@ namespace Shared.Network.Package.matchs
         }
     }
     // StC
-    public class MatchMapPackages : Packet
+    public class GetMatchPackages : Packet
     {
-        public override PackageType Type => PackageType.GetMatchMap;
+        public override PackageType Type => PackageType.GetMatch;
 
         public MatchId MatchId { get; set; }
         public int MapIdLength { get; set; }

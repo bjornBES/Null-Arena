@@ -1,4 +1,4 @@
-﻿/*
+/*
  * File: MasterServerLink.cs
  * File Created: 13 Jun 2026
  * Author: BjornBEs
@@ -29,6 +29,7 @@ namespace GameServer
         public async Task<ServerInfo?> Initialize(Server server)
         {
             ServerInfo serverInfo = new ServerInfo("", server.LocalAddress.Address.ToString(), NetworkConstants.GamePort, "", server.GameType);
+            server.ThisServerInfo = serverInfo;
 
             if (server.MasterArgs.HasMasterServer)
             {
@@ -40,9 +41,12 @@ namespace GameServer
             }
 
             _listener_cts = new CancellationTokenSource();
-            _ = Task.Run(() => acceptLoop(serverInfo, _listener_cts.Token));
+            if (server.MasterArgs.HasMasterServer)
+            {
+                _ = Task.Run(() => acceptLoop(serverInfo, _listener_cts.Token));
+            }
 
-            serverInfo.MaxMatches = 1;
+            serverInfo.ServerConfig.MaxMatches = 1;
             await UpdateServerInfoGTM(serverInfo, server);
 
             return serverInfo;
@@ -50,7 +54,7 @@ namespace GameServer
 
         private async Task acceptLoop(ServerInfo serverInfo, CancellationToken ct)
         {
-            TcpListener listener = new TcpListener(IPAddress.Any, serverInfo.ServerPort);
+            TcpListener listener = new TcpListener(serverInfo.EndPoint);
             listener.Start();
             while (!ct.IsCancellationRequested)
             {
@@ -97,11 +101,21 @@ namespace GameServer
 
         private async Task<TcpClient> connectToMaster(Server server)
         {
-            TcpClient client = new TcpClient();
-            IPAddress masterAddress = IPAddress.Parse(NetworkConstants.MasterHost);
+            TcpClient client = new TcpClient(server.ThisServerInfo.EndPoint);
+            IPAddress masterAddress;
+            if (server.MasterArgs.UseLocalHost)
+            {
+                masterAddress = IPAddress.Loopback;
+            }
+            else
+            {
+                masterAddress = IPAddress.Parse(NetworkConstants.MasterHost);
+            }
             if (server.MasterArgs.HasMasterServer)
             {
-                await client.ConnectAsync(masterAddress, NetworkConstants.MasterPort);
+                IPEndPoint endPoint = new IPEndPoint(masterAddress, NetworkConstants.MasterPort);
+                Console.WriteLine($"connecting to {endPoint}");
+                await client.ConnectAsync(endPoint);
             }
             return client;
         }

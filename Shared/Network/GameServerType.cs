@@ -10,6 +10,7 @@
 
 public enum GameServerType
 {
+    Offline,
     CommunityGameServers,
     OperatedGameServers
 }

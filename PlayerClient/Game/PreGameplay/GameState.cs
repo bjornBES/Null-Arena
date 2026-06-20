@@ -9,6 +9,7 @@
         Play,
         Lobby,
         Gameplay,
+        SelfHost,
         Error
     }
 }

@@ -17,6 +17,7 @@ public class GameAction
         string actionFlagName = actionFlag.ToString();
         if (actionDownFunc(actionFlagName))
         {
+            actionDownFunc(actionFlagName);
             action();
             return actionFlag;
         }

@@ -1,0 +1,268 @@
+{
+  "ProfileName": "global",
+  "InputDevices": ["Keyboard", "Mouse"],
+  "Actions": [
+    {
+      "Action": "Right",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Axis",
+          "ReturnType": "Bool",
+          "Keys": ["D", "Right"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Left",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Axis",
+          "ReturnType": "Bool",
+          "Keys": ["A", "Left"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Forward",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Axis",
+          "ReturnType": "Bool",
+          "Keys": ["W", "Up"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Backward",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Axis",
+          "ReturnType": "Bool",
+          "Keys": ["S", "Down"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Horizontal",
+      "ActionType": "Float",
+      "Bindings": [
+        {
+          "$type": "FloatBinding",
+          "BindingType": "Axis",
+          "ReturnType": "Float",
+          "ActionPositive": ["Right"],
+          "ActionNegative": ["Left"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Vertical",
+      "ActionType": "Float",
+      "Bindings": [
+        {
+          "$type": "FloatBinding",
+          "BindingType": "Axis",
+          "ReturnType": "Float",
+          "ActionPositive": ["Forward"],
+          "ActionNegative": ["Backward"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Jump",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["Space"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Fire1",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["Left"],
+          "Device": "Mouse"
+        }
+      ]
+    },
+    {
+      "Action": "Fire2",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["Right"],
+          "Device": "Mouse"
+        }
+      ]
+    },
+    {
+      "Action": "Reload",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["R"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Use",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["E"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Crouch",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["LeftControl"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Ability1",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["D1"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Ability2",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["D2"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Ability3",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["D3"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Ability4",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["D4"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Ability5",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["D5"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Ability6",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["D6"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Ability7",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["D7"],
+          "Device": "Keyboard"
+        }
+      ]
+    },
+    {
+      "Action": "Debug",
+      "ActionType": "Bool",
+      "Bindings": [
+        {
+          "$type": "BoolBinding",
+          "BindingType": "Button",
+          "ReturnType": "Bool",
+          "Keys": ["F12"],
+          "Device": "Keyboard"
+        }
+      ]
+    }
+  ]
+}

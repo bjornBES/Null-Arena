@@ -1,4 +1,4 @@
-﻿namespace Shared.Game.Sim
+namespace Shared.Game.Simulator
 {
     public class PhysicsSystem
     {

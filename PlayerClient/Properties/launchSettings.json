@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "PlayerClient": {
+      "commandName": "Project"
+    },
+    "Null Arena self host": {
+      "commandName": "Project",
+      "commandLineArgs": "--self-host"
+    }
+  }
+}

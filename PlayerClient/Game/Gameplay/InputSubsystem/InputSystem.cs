@@ -1,4 +1,4 @@
-﻿/*
+/*
  * File: InputSystem.cs
  * File Created: 26 Apr 2026
  * Author: BjornBEs
@@ -30,54 +30,16 @@ namespace PlayerClient.Game.Gameplay.InputSubsystem
 
         internal InputSystem()
         {
-            InputActionDefinition[] _bindings =
-            [
-                new InputActionDefinition()
-                {
-                    Action = "Horizontal",
-                    ActionType = ActionType.Float,
-                    Bindings = [
-                        new FloatAxisBinding() { Device = InputDevice.Keyboard, Negative = [KeyCode.A], Positive = [KeyCode.D] },
-                        new FloatAxisBinding() { Device = InputDevice.Keyboard, Negative = [KeyCode.Left], Positive = [KeyCode.Right] },
-                    ]
-                },
-                new InputActionDefinition()
-                {
-                    Action = "Vertical",
-                    ActionType = ActionType.Float,
-                    Bindings = [
-                        new FloatAxisBinding() { Device = InputDevice.Keyboard, Negative = [KeyCode.S], Positive = [KeyCode.W] },
-                        new FloatAxisBinding() { Device = InputDevice.Keyboard, Negative = [KeyCode.Down], Positive = [KeyCode.Up] },
-                    ]
-                },
-                new InputActionDefinition()
-                {
-                    Action = "Jump",
-                    ActionType = ActionType.Bool,
-                    Bindings = [
-                        new BoolKeyBinding() { Device = InputDevice.Keyboard, Keys = [KeyCode.Space] },
-                    ]
-                }
-            ];
-            _profile = new InputProfile()
-            {
-                InputDevices = [InputDevice.Keyboard, InputDevice.Mouse],
-                Actions = _bindings,
-                ProfileName = "global",
-            };
             JsonSerializerOptions serializerOptions = new JsonSerializerOptions()
             {
                 WriteIndented = true,
             };
             serializerOptions.Converters.Add(new JsonStringEnumConverter());
 
-            /*          
-                        string json = JsonSerializer.Serialize(_profile, serializerOptions);
-                        File.WriteAllText("inputFile.json", json);
-                        */
-
             string json = File.ReadAllText("Content/inputFile.json");
             _profile = JsonSerializer.Deserialize<InputProfile>(json, serializerOptions);
+
+            Update();
 
             Input._system = this;
         }
@@ -136,9 +98,9 @@ namespace PlayerClient.Game.Gameplay.InputSubsystem
         public bool IsActionDown(string action)
             => _actionStates[GetInputAction(action)].BoolDown;
         public bool IsActionPressed(string action)
-            => _actionStates[GetInputAction(action)].BoolDown;
+            => _actionStates[GetInputAction(action)].BoolPressed;
         public bool IsActionReleased(string action)
-            => _actionStates[GetInputAction(action)].BoolDown;
+            => _actionStates[GetInputAction(action)].BoolReleased;
 
         public float GetAxis(string action)
             => _actionStates[GetInputAction(action)].FloatValue;

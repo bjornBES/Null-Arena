@@ -8,6 +8,7 @@
  * -----
  */
 
+using System.ComponentModel;
 using Shared.EasyArgs;
 
 namespace GameServer
@@ -16,5 +17,12 @@ namespace GameServer
     {
         [Arg("-m", "")]
         public bool HasMasterServer { get; set; }
+
+        [Arg("", "--maps")]
+        [DefaultValue("")]
+        public string Maps { get; set; }
+
+        [Arg("-l", "--local")]
+        public bool UseLocalHost{ get; set; }
     }
 }

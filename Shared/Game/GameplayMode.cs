@@ -1,4 +1,4 @@
-﻿/*
+/*
  * File: GameplayMode.cs
  * File Created: 18 Apr 2026
  * Author: BjornBEs
@@ -12,6 +12,7 @@ namespace Shared.Game
 {
     public enum GameplayMode
     {
+        Any = 0,
         None,
         QuickPlay,
         Custom,

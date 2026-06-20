@@ -1,11 +1,11 @@
-﻿namespace Shared.Game.Characters
+namespace Shared.Game.Characters
 {
     public static class HeroChecksumCheck
     {
         private static Dictionary<string, uint> _checksumTable = new Dictionary<string, uint>()
         {
             { "player_char1", 1054411072 },
-            { "player_char2", 3902038262 },
+            { "player_char2", 3426114251 },
         };
 
         public static bool Check(string heroId, uint checksum)

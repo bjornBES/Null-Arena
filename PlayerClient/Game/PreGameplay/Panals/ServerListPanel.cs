@@ -1,4 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * File: ServerListPanel.cs
+ * File Created: 13 Jun 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 14 Jun 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using Microsoft.Xna.Framework;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using Shared.Network;
@@ -41,14 +51,14 @@ namespace PlayerClient.Game.PreGameplay.Panals
             if (!string.IsNullOrEmpty(Game1.ClientArguments.GameServerIp))
             {
                 Button offline = new Button(Anchor.AutoLeft, new Vector2(1f, 40), "Dedicated");
-                ServerInfo offlineCapturedServer = new ServerInfo("Dedicated", Game1.ClientArguments.GameServerIp + ":" + Game1.ClientArguments.GameServerPort, "");
+                ServerInfo offlineCapturedServer = new ServerInfo("Dedicated", Game1.ClientArguments.GameServerIp + ":" + Game1.ClientArguments.GameServerPort, "", GameServerType.CommunityGameServers);
                 offline.OnPressed += _ => OnServerSelected?.Invoke(offlineCapturedServer);
                 _scrollableList.AddChild(offline);
             }
             else
             {
                 Button offline = new Button(Anchor.AutoLeft, new Vector2(1f, 40), "Offline");
-                ServerInfo offlineCapturedServer = new ServerInfo("Offline", "127.0.0.1:0000", "");
+                ServerInfo offlineCapturedServer = new ServerInfo("Offline", "127.0.0.1:0000", "", GameServerType.Offline);
                 offline.OnPressed += _ => OnServerSelected?.Invoke(offlineCapturedServer);
                 _scrollableList.AddChild(offline);
             }

@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "CommunityServer": {
+      "commandName": "Project"
+    },
+    "CommunityServer Local Debug": {
+      "commandName": "Project",
+      "commandLineArgs": "-l -m"
+    }
+  }
+}

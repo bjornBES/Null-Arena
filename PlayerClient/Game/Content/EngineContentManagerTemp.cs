@@ -9,6 +9,7 @@
  */
 
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 
 namespace PlayerClient.Game.Content
@@ -24,7 +25,13 @@ namespace PlayerClient.Game.Content
         /// </summary>
         /// <param name="key"></param>
         /// <param name="assetName"></param>
-        void Load(string key, string assetName);
+        void LoadMainThread(string key, string assetName);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="assetName"></param>
+        Task LoadAsync(string key, string assetName);
         /// <summary>
         /// 
         /// </summary>
@@ -55,12 +62,14 @@ namespace PlayerClient.Game.Content
         public Type ContentType => typeof(T);
 
         protected readonly ContentManager _content;
+        protected readonly GraphicsDevice graphicsDevice;
         protected readonly Dictionary<int, T> _registry;
         protected readonly Dictionary<int, string> _keyCache;
         protected int _cacheIndex;
 
-        public EngineContentManagerTemp(ContentManager content)
+        public EngineContentManagerTemp(ContentManager content, GraphicsDevice gd)
         {
+            graphicsDevice = gd;
             ContentSystemRegistry.Register(this);
             _content = content;
             _keyCache = new Dictionary<int, string>();
@@ -90,14 +99,14 @@ namespace PlayerClient.Game.Content
             }
             return index;
         }
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="key"></param>
         /// <param name="assetName"></param>
-        public abstract void Load(string key, string assetName);
-        protected abstract void Load(string key);
+        public virtual Task LoadAsync(string key, string assetName) => Task.CompletedTask;
+        public abstract void LoadMainThread(string key, string assetName);
+        protected abstract void LoadMainThread(string key);
 
         /// <summary>
         /// 

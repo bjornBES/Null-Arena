@@ -22,13 +22,15 @@ namespace Shared.Network
 
         public GameServerType ServerType;
 
-        public int MaxMatches;
+        public int MaxMatches => ServerConfig.MaxMatches;
 
-        public int ActiveMatches;
+        public int ActiveMatches => ServerConfig.ActiveMatches;
 
-        public int PlayersOnline;
+        public int PlayersOnline => ServerConfig.PlayersOnline;
 
         public bool IsOnline;
+
+        public ServerConfig ServerConfig;
 
         public IPAddress Address => IPAddress.Parse(ServerAddress);
         public IPEndPoint EndPoint => new IPEndPoint(Address, ServerPort);
@@ -55,11 +57,64 @@ namespace Shared.Network
             _init();
         }
 
+        public ServerInfo(string name, string address, string region, GameServerType serverType, int maxMatches, int activeMatches, int playersOnline)
+        {
+            ServerType = serverType;
+            ServerName = name;
+            string[] addressSegments = address.Split(':');
+            ServerAddress = addressSegments.First();
+            ServerPort = int.Parse(addressSegments.Last());
+            Region = region;
+            ServerConfig = new ServerConfig();
+            ServerConfig.MaxMatches = maxMatches;
+            ServerConfig.ActiveMatches = activeMatches;
+            ServerConfig.PlayersOnline = playersOnline;
+            ServerConfig.MaxPlayers = 0;
+            ServerConfig.IsPasswordProtected = false;
+            ServerConfig.Version = 0;
+        }
+
         private void _init()
         {
-            MaxMatches = 1;
-            ActiveMatches = 0;
-            PlayersOnline = 0;
+            ServerConfig = new ServerConfig();
+            ServerConfig.MaxMatches = 1;
+            ServerConfig.ActiveMatches = 0;
+            ServerConfig.PlayersOnline = 0;
+            ServerConfig.MaxPlayers = 0;
+            ServerConfig.IsPasswordProtected = false;
+            ServerConfig.Version = 0;
         }
+    }
+    public struct ServerConfig
+    {
+        /// <summary>
+        /// Maximum amount of matches that can run on this server
+        /// </summary>
+        public int MaxMatches;
+
+        /// <summary>
+        /// Amount of matches running on this server
+        /// </summary>
+        public int ActiveMatches;
+
+        /// <summary>
+        /// Amount of players online on this server
+        /// </summary>
+        public int PlayersOnline;
+
+        /// <summary>
+        /// Max players per match
+        /// </summary>
+        public int MaxPlayers;
+
+        /// <summary>
+        /// Indicates whether a server has a password
+        /// </summary>
+        public bool IsPasswordProtected;
+
+        /// <summary>
+        /// The version/protocol the server is using
+        /// </summary>
+        public ServerVersion Version;
     }
 }

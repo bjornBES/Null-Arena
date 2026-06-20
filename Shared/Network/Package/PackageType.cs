@@ -1,4 +1,4 @@
-﻿/*
+/*
  * File: PackageType.cs
  * File Created: 25 May 2026
  * Author: BjornBEs
@@ -18,9 +18,22 @@ namespace Shared.Network.Package
 {
     public enum PackageType
     {
-        Input,
+        // Client To Server
         FindMatch,
+
+        // Server To Client
+        FoundMatch,
+
+        // Client To Server
         ConnectMatch,
-        GetMatchMap,
+
+        // Server To Client
+        GetMatch,
+
+        // Client To Server
+        Input,
+
+        // Server To Client
+        ServerPlayerState,
     }
 }

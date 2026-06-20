@@ -1,4 +1,4 @@
-﻿# BARE Level Map Format — Entity Specification
+# BARE Level Map Format — Entity Specification
 
 ## Entity Version 1
 
@@ -21,7 +21,7 @@ Type-specific extra data is never stored inline in the entity record. It lives i
 | 0–3   | entity_id   | `uint32`   | Unique entity identifier within the map |
 | 4     | entity_type | `uint8`    | Entity type (see Entity Types below) |
 | 5     | flags       | `uint8`    | Controls which optional fields are present |
-| 6–7   | reserved    | `uint16`   | Zero, alignment padding |
+| 6–7   | mesh id     | `uint16`   | Handle by the Asset registry used if entity_type = `0x04` |
 | 8–19  | position    | `float[3]` | World position X, Y, Z |
 | 20–31 | rotation    | `float[3]` | Rotation in degrees X, Y, Z |
 | 32–43 | scale       | `float[3]` | Per-axis scale X, Y, Z |
@@ -69,12 +69,12 @@ Fixed fields occupy 46 bytes. Optional fields follow from byte 46. The total ent
 
 | Value  | Type           | Server loads? | Description |
 |--------|----------------|---------------|-------------|
-| `0x00` | `BOX`          | Yes           | Static collidable box (wall, floor, crate, platform) |
-| `0x01` | `PLAYER_SPAWN` | Yes           | Player spawn point |
-| `0x02` | `ITEM_SPAWN`   | Yes           | Item spawn point |
-| `0x03` | `BILLBOARD`    | No            | Static world-space sprite (torch, sign, decal) |
-| `0x04` | `LIGHT`        | No            | Light source |
-| `0xFF` | Reserved       | —             | —           |
+| `0x00` | `PLAYER_SPAWN` | Yes           | Player spawn point |
+| `0x01` | `ITEM_SPAWN`   | Yes           | Item spawn point |
+| `0x02` | `BILLBOARD`    | No            | Static world-space sprite (torch, sign, decal) |
+| `0x03` | `LIGHT`        | No            | Light source |
+| `0x04` | `MESH`         | Yes           | Static collidable box (wall, floor, crate, platform) |
+| `0xFF` | `RESERVED`     | No            | |
 
 ---
 

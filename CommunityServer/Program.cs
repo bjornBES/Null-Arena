@@ -1,4 +1,4 @@
-﻿/*
+/*
  * File: Program.cs
  * File Created: 13 Jun 2026
  * Author: BjornBEs
@@ -18,7 +18,7 @@ namespace CommunityServer
         {
             Server server = await Server.CreateAsync(args, GameServerType.CommunityGameServers);
 
-            await server.GameServer.Start();
+            await server.WaitLoop();
 
             return 0;
         }
