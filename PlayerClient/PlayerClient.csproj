@@ -31,8 +31,8 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RemoteConsole\RemoteConsole.csproj" />
-    <ProjectReference Include="..\..\Shared\NullArena\Shared.csproj" />
+    <ProjectReference Include="../../Bare_Spirit/RemoteConsole\RemoteConsole.csproj" />
+    <ProjectReference Include="..\..\Bare_Spirit\Engine\Engine.csproj" />
   </ItemGroup>
 	<ItemGroup>
 		<Content Include="..\..\Assets\**">

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
-using Shared.Network;
+using Shared.Ncode;
 
 namespace PlayerClient.Game.PreGameplay.Panals
 {

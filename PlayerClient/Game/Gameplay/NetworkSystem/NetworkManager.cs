@@ -1,9 +1,19 @@
 /*
  * File: NetworkManager.cs
+ * File Created: 20 Jun 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 21 Jun 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+/*
+ * File: NetworkManager.cs
  * File Created: 18 Apr 2026
  * Author: BjornBEs
  * -----
- * Last Modified: 20 Jun 2026
+ * Last Modified: 21 Jun 2026
  * Modified By: BjornBEs
  * -----
  */
@@ -11,10 +21,10 @@
 using Microsoft.Xna.Framework;
 using PlayerClient.Client.game;
 using PlayerClient.Game.Content;
-using Shared.Core.Game.Matches;
-using Shared.Core.Network;
-using Shared.Core.Network.Package;
-using Shared.Core.Network.Package.Matches;
+using PlayerClient.Game.Gameplay.Matches;
+using PlayerClient.Game.Gameplay.NetworkSystem.Packets;
+using Shared.Ncode;
+using Shared.Ncode.Packages;
 
 namespace PlayerClient.Game.Gameplay.NetworkSystem
 {
@@ -52,14 +62,13 @@ namespace PlayerClient.Game.Gameplay.NetworkSystem
             while (_packetQueue.Count > 0)
             {
                 Packet packet = _packetQueue.Dequeue();
-                switch (packet.Type)
+                switch ((PackageType)packet.Type)
                 {
                     case PackageType.Input:
                         break;
                     case PackageType.FindMatch:
                         break;
                     case PackageType.ConnectMatch:
-                        break;
                         break;
                     default:
                         break;

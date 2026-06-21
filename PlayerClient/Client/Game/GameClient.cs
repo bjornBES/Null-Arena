@@ -3,13 +3,14 @@
  * File Created: 18 Apr 2026
  * Author: BjornBEs
  * -----
- * Last Modified: 20 Jun 2026
+ * Last Modified: 21 Jun 2026
  * Modified By: BjornBEs
  * -----
  */
 
-using Shared.Core.Network;
-using Shared.Core.Network.Package;
+using GameServer;
+using Shared.Ncode;
+using Shared.Ncode.Packages;
 using System.Net.Sockets;
 
 namespace PlayerClient.Client.game

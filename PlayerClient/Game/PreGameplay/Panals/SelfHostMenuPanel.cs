@@ -1,13 +1,22 @@
+/*
+ * File: SelfHostMenuPanel.cs
+ * File Created: 20 Jun 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 21 Jun 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
 using PlayerClient.Game.Content;
 using PlayerClient.Game.Gameplay;
+using PlayerClient.Game.Gameplay.Matches;
 using PlayerClient.Game.Gameplay.NetworkSystem;
-using Shared.Game;
-using Shared.Game.Matchs;
-using Shared.Network.Package.matchs;
+using PlayerClient.Game.Gameplay.NetworkSystem.Packets;
 
 namespace PlayerClient.Game.PreGameplay.Panals
 {
@@ -29,7 +38,7 @@ namespace PlayerClient.Game.PreGameplay.Panals
             {
                 EngineContentManager.Instance.GetManager<MeshBuffer>(ContentType.Mesh).UnloadAll();
                 EngineContentManager.Instance.GetManager<Texture2D>(ContentType.Texture).UnloadAll();
-                PacketDespatcher.DispaschHandler(new GetMatchPackages()
+                PacketDespatcher.DispatchHandler(new GetMatchPackages()
                 {
                     MatchId = new MatchId(0),
                     MapId = "mparena01".ToCharArray(),

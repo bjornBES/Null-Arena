@@ -3,14 +3,14 @@
  * File Created: 18 Apr 2026
  * Author: BjornBEs
  * -----
- * Last Modified: 27 May 2026
+ * Last Modified: 21 Jun 2026
  * Modified By: BjornBEs
  * -----
  */
 
 using Microsoft.Xna.Framework;
-using Shared.Game.InputSystem;
-using Shared.Network.Package;
+using PlayerClient.Game.Gameplay.InputSubsystem;
+using PlayerClient.Game.Gameplay.NetworkSystem.Packets;
 
 namespace PlayerClient.Game.Gameplay.EntitySystem
 {

@@ -3,7 +3,7 @@
  * File Created: 18 Apr 2026
  * Author: BjornBEs
  * -----
- * Last Modified: 20 Jun 2026
+ * Last Modified: 21 Jun 2026
  * Modified By: BjornBEs
  * -----
  */
@@ -13,8 +13,8 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
-using Shared.Core.Network;
-using Shared.Network;
+using Shared.Ncode;
+using Shared.Ncode;
 using Timer = System.Timers.Timer;
 
 namespace PlayerClient.Client.master

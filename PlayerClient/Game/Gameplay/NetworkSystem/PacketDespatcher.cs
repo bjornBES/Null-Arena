@@ -3,14 +3,13 @@
  * File Created: 20 Jun 2026
  * Author: BjornBEs
  * -----
- * Last Modified: 20 Jun 2026
+ * Last Modified: 21 Jun 2026
  * Modified By: BjornBEs
  * -----
  */
 
-using Shared.Core.Game.Matches;
-using Shared.Core.Network.Package;
-using Shared.Core.Network.Package.Matches;
+using PlayerClient.Game.Gameplay.NetworkSystem.Packets;
+using Shared.Ncode.Packages;
 
 namespace PlayerClient.Game.Gameplay.NetworkSystem
 {
@@ -20,7 +19,7 @@ namespace PlayerClient.Game.Gameplay.NetworkSystem
 
         public static void DispatchHandler(Packet packet)
         {
-            switch (packet.Type)
+            switch ((PackageType)packet.Type)
             {
                 case PackageType.Input:
                     break;

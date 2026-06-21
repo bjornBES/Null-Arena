@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Shared.Game.BVH;
+using Engine.Game.BVH;
 
 namespace PlayerClient.Game.Gameplay.BVH
 {

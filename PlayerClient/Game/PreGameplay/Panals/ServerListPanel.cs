@@ -1,5 +1,15 @@
 ﻿/*
  * File: ServerListPanel.cs
+ * File Created: 20 Jun 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 21 Jun 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+/*
+ * File: ServerListPanel.cs
  * File Created: 13 Jun 2026
  * Author: BjornBEs
  * -----
@@ -11,8 +21,7 @@
 using Microsoft.Xna.Framework;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
-using Shared.Core.Network;
-using Shared.Network;
+using Shared.Ncode;
 
 namespace PlayerClient.Game.PreGameplay.Panals
 {

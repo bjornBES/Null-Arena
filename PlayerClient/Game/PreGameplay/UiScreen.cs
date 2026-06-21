@@ -1,8 +1,18 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * File: UiScreen.cs
+ * File Created: 20 Jun 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 21 Jun 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using Engine.Game.Game;
+using Microsoft.Xna.Framework;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
-using Shared.Game;
-using Shared.Network;
+using Shared.Ncode;
 
 namespace PlayerClient.Game.PreGameplay
 {

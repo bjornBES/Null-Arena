@@ -3,13 +3,13 @@
  * File Created: 18 Apr 2026
  * Author: BjornBEs
  * -----
- * Last Modified: 12 Jun 2026
+ * Last Modified: 21 Jun 2026
  * Modified By: BjornBEs
  * -----
  */
 
+using Engine.Game.Characters;
 using Microsoft.Xna.Framework;
-using Shared.Game.Characters;
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;

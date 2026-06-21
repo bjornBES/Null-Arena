@@ -1,12 +1,22 @@
+/*
+ * File: MapManager.cs
+ * File Created: 20 Jun 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 21 Jun 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
 using System.Diagnostics;
+using Engine.Game.BVH;
+using Engine.Game.Maps;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PlayerClient.Game.Content;
 using PlayerClient.Game.Gameplay.NetworkSystem;
+using PlayerClient.Game.Gameplay.NetworkSystem.Packets;
 using PlayerClient.Game.Gameplay.Rendering;
-using Shared.Game.BVH;
-using Shared.Game.Maps;
-using Shared.Network.Package.matchs;
 
 namespace PlayerClient.Game.Gameplay.MapSystem
 {

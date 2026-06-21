@@ -1,8 +1,18 @@
+/*
+ * File: PlacedMesh.cs
+ * File Created: 20 Jun 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 21 Jun 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using Engine.Game.BVH;
+using Engine.Game.Maps;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PlayerClient.Game.Content;
-using Shared.Game.BVH;
-using Shared.Game.Maps;
 
 namespace PlayerClient.Game.Gameplay.MapSystem
 {
